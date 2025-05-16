@@ -1,14 +1,16 @@
+package com.alura.screenmatch.principal;
+
 import com.alura.screenmatch.calculos.CalculadoraDeTiempo;
 import com.alura.screenmatch.calculos.FiltroRecomendacion;
 import com.alura.screenmatch.modelos.Episodio;
 import com.alura.screenmatch.modelos.Pelicula;
 import com.alura.screenmatch.modelos.Serie;
 
+import java.util.ArrayList;
+
 public class Principal {
     public static void main(String[] args) {
-        Pelicula miPelicula = new Pelicula();
-        miPelicula.setNombre("Encanto");
-        miPelicula.setFechaDeLanzamiento(2021);
+        Pelicula miPelicula = new Pelicula("Encanto" , 2022);
         miPelicula.setDuracionEnMinutos(180);
         System.out.println("Duración de la película: " + miPelicula.getDuracionEnMinutos());
 
@@ -20,18 +22,14 @@ public class Principal {
         System.out.println(miPelicula.calculaMediaEvaluaciones());
 
 
-        Serie lost = new Serie();
-        lost.setNombre("Lost");
-        lost.setFechaDeLanzamiento(2000);
+        Serie lost = new Serie("Lost", 2000);
         lost.muestraFichaTecnica();
         lost.setTemporadas(10);
         lost.setEpisodiosPorTemporada(10);
         lost.setMinutosPorEpisodio(50);
         System.out.println("Duracion de la série: " + lost.getDuracionEnMinutos());
 
-        Pelicula otraPelicula = new Pelicula();
-        otraPelicula.setNombre("Avatar");
-        otraPelicula.setFechaDeLanzamiento(2023);
+        Pelicula otraPelicula = new Pelicula("Avatar", 2021);
         otraPelicula.setDuracionEnMinutos(200);
 
         CalculadoraDeTiempo calculadora = new CalculadoraDeTiempo();
@@ -48,5 +46,21 @@ public class Principal {
         episodio.setSerie(lost);
         episodio.setTotalVisualizaciones(300);
         filtro.filtra(episodio);
+
+        var peliculaDeBruno = new Pelicula("El señor de los anillos" , 2020);
+        peliculaDeBruno.setDuracionEnMinutos(180);
+
+        ArrayList<Pelicula> listaDePeliculas = new ArrayList<>();
+        listaDePeliculas.add(peliculaDeBruno);
+        listaDePeliculas.add(miPelicula);
+        listaDePeliculas.add(otraPelicula);
+
+        System.out.println("Tamaño de la lista: " + listaDePeliculas.size());
+        System.out.println("La primera película es: " + listaDePeliculas.get(0).getNombre());
+
+        System.out.println(listaDePeliculas);
+
+        System.out.println("toString de la Película: " + listaDePeliculas.get(0).toString());
+
     }
 }
